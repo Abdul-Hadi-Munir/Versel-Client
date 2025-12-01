@@ -12,21 +12,27 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-// 1. Get the URL from the settings (local or cloud)
-const API_URL = process.env.REACT_APP_API_URL;
+            // 1. Get the URL from the .env file
+            const API_URL = process.env.REACT_APP_API_URL;
+            
+            console.log("Attempting login to:", `${API_URL}/api/auth/login`); // Debugging line
 
-// 2. Use backticks ` ` to combine them
-const { data } = await axios.post(
-    `${API_URL}/api/auth/login`,
-    { email, password },
-    { withCredentials: true }
-);
+            // 2. Use backticks ` ` to combine them
+            const { data } = await axios.post(
+                `${API_URL}/api/auth/login`,
+                { email, password },
+                { withCredentials: true }
+            );
+
+            // 3. Success! Save data and move on
             localStorage.setItem('userInfo', JSON.stringify(data));
 
             if (data.role === 'admin') navigate('/admin');
             else if (data.role === 'teacher') navigate('/teacher');
             else if (data.role === 'student') navigate('/student');
+
         } catch (err) {
+            console.error("Login Error:", err); // See the real error in console
             setError(err.response?.data?.message || 'Login failed');
         }
     };
@@ -123,6 +129,7 @@ const { data } = await axios.post(
 };
 
 export default Login;
+
 
 
 
