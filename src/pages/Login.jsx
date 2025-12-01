@@ -21,7 +21,6 @@ const { data } = await axios.post(
     { email, password },
     { withCredentials: true }
 );
-);
 
 );
             localStorage.setItem('userInfo', JSON.stringify(data));
@@ -126,6 +125,7 @@ const { data } = await axios.post(
 };
 
 export default Login;
+
 
 
 
