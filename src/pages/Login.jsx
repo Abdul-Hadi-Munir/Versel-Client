@@ -12,10 +12,9 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-const { data } = await axios.post(
-    'https://versel-server-psi.vercel.app/api/auth/login',
-    { email, password },
-    { withCredentials: true }
+            const { data } = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+
+
 );
             localStorage.setItem('userInfo', JSON.stringify(data));
 
@@ -119,4 +118,5 @@ const { data } = await axios.post(
 };
 
 export default Login;
+
 
