@@ -12,10 +12,15 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+// 1. Get the URL from the settings (local or cloud)
+const API_URL = process.env.REACT_APP_API_URL;
+
+// 2. Use backticks ` ` to combine them
 const { data } = await axios.post(
-    'http://localhost:5000/api/auth/login', // Test with this FIRST
+    `${API_URL}/api/auth/login`,
     { email, password },
     { withCredentials: true }
+);
 );
 
 );
@@ -121,6 +126,7 @@ const { data } = await axios.post(
 };
 
 export default Login;
+
 
 
 
